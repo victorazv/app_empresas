@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Registro</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+<h4>Prencha os campos</h4>
+
+<br>
+<br>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Objeto</ion-label>
+      <ion-select [(ngModel)]="objeto">
+        <ion-option value="Embalagens">Embalagens pet</ion-option>
+        <ion-option value="Latas">Latas</ion-option>
+        <ion-option value="Sacos/Sacola">Sacos/Sacolas</ion-option>
+        <ion-option value="Copos">Copos</ion-option>
+        <ion-option value="Outros">Outros</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Quantidade</ion-label>
+      <ion-input [(ngModel)]="quantidade" type="numeric"></ion-input>
+    </ion-item>
+    
+  </ion-list>
+
+  <button ion-button full (click)="inserir(objeto, quantidade)">Inserir</button>
+
+
+</ion-content>
