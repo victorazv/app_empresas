@@ -11,6 +11,8 @@ import { RegistroPage } from '../pages/registro/registro';
 import { RegistrosPendentesPage } from '../pages/registros-pendentes/registros-pendentes';
 import { HistoricoPage } from '../pages/historico/historico';
 
+import { RegistroProvider } from '../providers/registro/registro';
+
 @Component({
   templateUrl: 'app.html'
 })

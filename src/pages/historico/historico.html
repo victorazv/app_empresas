@@ -9,5 +9,25 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <div *ngFor="let registro of registros | async">
+      
+      
+        <ion-card>
+          <ion-card-header>{{ registro.objeto }}</ion-card-header>
+          <ion-card-content>{{ registro.status }}</ion-card-content>
+        </ion-card>
 
+
+      <!--<ion-item-options side="left">
+        <button ion-button color="secondary" (click)="editContact(contact)">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button color="danger" (click)="removeContact(contact.key)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    -->
+  </div>
+  </ion-list>
 </ion-content>

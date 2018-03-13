@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the HistoricoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { RegistroProvider } from '../../providers/registro/registro';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HistoricoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  registros: any;
+  constructor(private registroProvider:RegistroProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  ionView
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HistoricoPage');
+    this.registros = this.registroProvider.getAll();
   }
 
 }

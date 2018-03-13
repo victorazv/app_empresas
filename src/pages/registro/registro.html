@@ -15,6 +15,7 @@
 <br>
 
   <ion-list>
+
     <ion-item>
       <ion-label>Objeto</ion-label>
       <ion-select [(ngModel)]="objeto">
@@ -31,9 +32,8 @@
       <ion-input [(ngModel)]="quantidade" type="numeric"></ion-input>
     </ion-item>
     
-  </ion-list>
+  <button ion-button full type="submit" (click)="inserir(objeto, quantidade)">Inserir</button>
 
-  <button ion-button full (click)="inserir(objeto, quantidade)">Inserir</button>
-
+</ion-list>
 
 </ion-content>
