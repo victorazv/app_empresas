@@ -13,6 +13,8 @@ import { HistoricoPage } from '../pages/historico/historico';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -57,8 +59,10 @@ import { RegistroProvider } from '../providers/registro/registro';
   providers: [
     StatusBar,
     SplashScreen,
+    GoogleMaps,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    RegistroProvider
+    RegistroProvider,
+    Geolocation
   ]
 })
 export class AppModule { }
