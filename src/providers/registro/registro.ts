@@ -30,7 +30,15 @@ export class RegistroProvider {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       })
   }
-
+/*
+  getAbertos() {
+    return this.db.list(this.PATH, ref => ref.orderByChild('data').equalTo('Aberto'))
+    .snapshotChanges()
+      .map(changes => {
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      })
+  }
+*/
   get(key: string) {
     return this.db.object(this.PATH + key).snapshotChanges()
       .map(c => {
