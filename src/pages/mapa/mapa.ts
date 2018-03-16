@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegistroProvider } from '../../providers/registro/registro';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
+
 //CameraPosition, MarkerOptions, Marker
 
 @IonicPage()
@@ -16,7 +18,7 @@ export class MapaPage {
 
   @ViewChild('mapCanvas') element;
 
-  constructor(private registroProvider: RegistroProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private geolocation: Geolocation, private registroProvider: RegistroProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -26,40 +28,43 @@ export class MapaPage {
 
   loadMap() {
 
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-        target: {
-          lat: 43.0741904,
-          lng: -89.3809802
-        },
-        zoom: 18,
-        tilt: 30
-      }
-    };
+    this.geolocation.getCurrentPosition().then((data) => {
 
-    this.map = GoogleMaps.create('mapCanvas', mapOptions);
+      let mapOptions: GoogleMapOptions = {
+        camera: {
+          target: {
+            lat: data.coords.latitude,
+            lng: data.coords.longitude
+          },
+          zoom: 18,
+          tilt: 30
+        }
+      };
 
-    this.map.one(GoogleMapsEvent.MAP_READY)
-      .then(() => {
-        this.registros.subscribe(
-          (data: any) => {
-            
-            for (let registro of data) {
-              // Now you can use all methods safely.
-              this.map.addMarker({
-                title: 'Ionic',
-                icon: 'blue',
-                animation: 'DROP',
-                position: {
-                  lat: registro.latitude,
-                  lng: registro.longitude
-                }
-              });
+      this.map = GoogleMaps.create('mapCanvas', mapOptions);
+
+      this.map.one(GoogleMapsEvent.MAP_READY)
+        .then(() => {
+          this.registros.subscribe(
+            (data: any) => {
+
+              for (let registro of data) {
+                // Now you can use all methods safely.
+                this.map.addMarker({
+                  title: 'Ionic',
+                  icon: 'blue',
+                  animation: 'DROP',
+                  position: {
+                    lat: registro.latitude,
+                    lng: registro.longitude
+                  }
+                });
+              }
+
             }
-
-          }
-        )
-      });
+          )
+        });
+    });
   }
 }
 /*
