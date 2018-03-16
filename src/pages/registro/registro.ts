@@ -12,10 +12,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 export class RegistroPage {
 
-  //longitude: any;
-  //latitude: any;
-  //status: any;
-  //data: any;
   objeto: any;
   quantidade: any;
   form: FormGroup;
@@ -27,7 +23,7 @@ export class RegistroPage {
     var yyyy: any;
 
     dd = today.getDate();
-    mm = today.getMonth() + 1; //January is 0!
+    mm = today.getMonth() + 1; //Janeiro é 0
     yyyy = today.getFullYear();
 
     if (dd < 10) {
@@ -43,7 +39,6 @@ export class RegistroPage {
 
   createForm() {
     this.geolocation.getCurrentPosition().then((data) => {
-      //this.data = this.formatarData(); //"11/03/2018"; //this.status = ; //this.latitude = ""; //this.longitude = "";
       this.form = this.formBuilder.group({
         objeto: [this.objeto],
         quantidade: [this.quantidade],
