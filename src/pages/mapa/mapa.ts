@@ -49,16 +49,18 @@ export class MapaPage {
             (data: any) => {
 
               for (let registro of data) {
-                // Now you can use all methods safely.
-                this.map.addMarker({
-                  title: 'Ionic',
-                  icon: 'blue',
-                  animation: 'DROP',
-                  position: {
-                    lat: registro.latitude,
-                    lng: registro.longitude
-                  }
-                });
+                if (registro.status == "Aberto") {
+                  // Now you can use all methods safely.
+                  this.map.addMarker({
+                    title: 'Ionic',
+                    icon: 'blue',
+                    animation: 'DROP',
+                    position: {
+                      lat: registro.latitude,
+                      lng: registro.longitude
+                    }
+                  });
+                }
               }
 
             }

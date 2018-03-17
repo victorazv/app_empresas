@@ -10,9 +10,10 @@ export class RegistroProvider {
 
   save(registro: any) {
     return new Promise((resolve, reject) => {
+      console.log(registro);
       if (registro.key) {
         this.db.list(this.PATH)
-          .update(registro.key, { objeto: registro.objeto, quantidade: registro.quantidade, data: registro.data, status: registro.status, latitude: registro.latitude, longitude: registro.longitude })
+          .update(registro.key, { status: registro.status })
           .then(() => resolve())
           .catch((e) => reject(e));
       } else {
@@ -30,15 +31,7 @@ export class RegistroProvider {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       })
   }
-/*
-  getAbertos() {
-    return this.db.list(this.PATH, ref => ref.orderByChild('data').equalTo('Aberto'))
-    .snapshotChanges()
-      .map(changes => {
-        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-      })
-  }
-*/
+
   get(key: string) {
     return this.db.object(this.PATH + key).snapshotChanges()
       .map(c => {

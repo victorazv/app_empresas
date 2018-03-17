@@ -9,5 +9,28 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <div *ngFor="let registro of (registros | async)?.slice().reverse()">
+      <ion-card *ngIf="registro.status == 'Pendente Empresa' ">
+        <ion-card-header>{{ registro.objeto }} - {{ registro.quantidade }}</ion-card-header>
+        <ion-card-content>{{ registro.data }} - {{ registro.status }}</ion-card-content>
+        <ion-card-content>{{ registro.latitude }}, {{ registro.longitude }}</ion-card-content>
 
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left clear small (click)="ajustarStatus(registro.key, 'Finalizado')">
+              <ion-icon name="backspace"></ion-icon>
+              <div>Finalizar</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear small (click)="ajustarStatus(registro.key, 'Cancelado Empresa')">
+              <ion-icon name="md-close"></ion-icon>
+              <div>Cancelar</div>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </ion-list>
 </ion-content>

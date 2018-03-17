@@ -7,17 +7,29 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <ion-list>
-    <div *ngFor="let registro of registros | async">
-      
-      
-        <ion-card>
-          <ion-card-header>{{ registro.objeto }}</ion-card-header>
-          <ion-card-content>{{ registro.status }}</ion-card-content>
-        </ion-card>
+    <div *ngFor="let registro of (registros | async)?.slice().reverse()">
+      <ion-card>
+        <ion-card-header>{{ registro.objeto }}</ion-card-header>
+        <ion-card-content>{{ registro.status }}</ion-card-content>
 
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left clear small (click)="ajustarStatus(registro.key, 'Pendente Empresa')">
+              <ion-icon name="backspace"></ion-icon>
+              <div>Finalizar</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear small (click)="ajustarStatus(registro.key, 'Cancelado')">
+              <ion-icon name="md-close"></ion-icon>
+              <div>Cancelar</div>
+            </button>
+          </ion-col>
+        </ion-row>
+        
+      </ion-card>
 
       <!--<ion-item-options side="left">
         <button ion-button color="secondary" (click)="editContact(contact)">
@@ -28,6 +40,6 @@
         </button>
       </ion-item-options>
     -->
-  </div>
+    </div>
   </ion-list>
 </ion-content>

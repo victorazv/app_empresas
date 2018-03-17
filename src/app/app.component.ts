@@ -17,7 +17,7 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any, perfil: string}>;
 
@@ -27,10 +27,11 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, perfil: "todos" },
-      { title: 'Registro', component: RegistroPage, perfil: "pessoa"  },
-      { title: 'Histórico', component: HistoricoPage, perfil: "pessoa"  },
-      { title: 'Mapa', component: MapaPage, perfil: "empresa"  },
-      { title: 'Registros pendentes', component: RegistrosPendentesPage, perfil: "empresa"  },
+      { title: 'Registro', component: RegistroPage, perfil: "empresa1"  },
+      { title: 'Histórico', component: HistoricoPage, perfil: "empresa2"  },
+      { title: 'Mapa', component: MapaPage, perfil: "pessoa1"  },
+      { title: 'Registros pendentes', component: RegistrosPendentesPage, perfil: "pessoa2" },
+      { title: 'Sair', component: LoginPage, perfil: "todos"  },
     ];   
 
   }

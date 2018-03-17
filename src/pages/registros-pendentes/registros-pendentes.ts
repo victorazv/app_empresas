@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the RegistrosPendentesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ToastController } from 'ionic-angular';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { RegistroProvider } from '../../providers/registro/registro';
 
 @IonicPage()
 @Component({
@@ -15,11 +11,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RegistrosPendentesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  form: FormGroup;
+  registros: any;
+
+  constructor(private formBuilder: FormBuilder, private toast: ToastController, private registroProvider: RegistroProvider, public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ajustarStatus(key, status) {
+
+    this.form = this.formBuilder.group({
+      key: [key],
+      status: [status],
+    });
+
+    this.registroProvider.save(this.form.value)
+
+      .then(() => {
+        this.toast.create({ message: 'Registrado com sucesso!', duration: 3000 }).present();
+      })
+      .catch((e) => {
+        this.toast.create({ message: 'Erro ao salvar', duration: 3000 }).present();
+        console.error(e);
+      })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegistrosPendentesPage');
+    this.registros = this.registroProvider.getAll();
   }
 
 }
