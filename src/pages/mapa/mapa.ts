@@ -52,7 +52,7 @@ export class MapaPage {
                 if (registro.status == "Aberto") {
                   // Now you can use all methods safely.
                   this.map.addMarker({
-                    title: 'Ionic',
+                    title: registro.quantidade ,
                     icon: 'blue',
                     animation: 'DROP',
                     position: {
