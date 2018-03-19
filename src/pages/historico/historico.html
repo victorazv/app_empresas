@@ -11,7 +11,7 @@
   <ion-list>
     <div *ngFor="let registro of (registros | async)?.slice().reverse()">
       <ion-card>
-        <ion-card-header>{{ registro.objeto }}</ion-card-header>
+        <ion-card-header>{{ registro.objeto }} - {{ registro.quantidade }}</ion-card-header>
         <ion-card-content>{{ registro.status }}</ion-card-content>
 
         <ion-row>
